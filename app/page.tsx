@@ -1,4 +1,5 @@
 'use client'
+import SomeComponent from '@/components/somecomponent';
 import { useEffect, useState } from 'react'
 
 interface TrackingDetail {
@@ -178,7 +179,7 @@ export default function Home() {
   }
 
   const PostSubmit = async () =>{
-    setIsLoading(true);
+    // setIsLoading(true);
     setIsShow(false);
     setError("");
     const url = new URL(`https://info.sweettracker.co.kr/api/v1/trackingInfo?t_code=${tcode}&t_invoice=${tinvoice} &t_key=${process.env.NEXT_PUBLIC_API_MAIN_KEY}`)
@@ -221,7 +222,7 @@ export default function Home() {
 
     <>
     {
-      isLoading &&
+      isLoading === true &&
         <div className="fixed w-full h-full bg-black/50 top-0 left-0 z-50">
           <div className="absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4">
           <svg width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
@@ -282,13 +283,29 @@ export default function Home() {
 
     <div className={`${themeColor[theme].back} p-5 text-black text-sm md:text-xl xl:text-2xl flex xl:justify-between  justify-center`}>
             <h3 className="font-extrabold md:text-center">국내/외 택배조회 시스템</h3>
-              <div className="fixed right-5 top-5 transition-all duration-500 z-50 cursor-pointer md:hidden" onClick={() =>{toggleMenu();}}>
+              <div className="fixed right-5 top-5 transition-all duration-500 z-50 cursor-pointer xl:hidden" onClick={() =>{toggleMenu();}}>
                 <div style={{transform: menuActive ? `rotate(-45deg) translateY(15px)` : ""}} className={`${menuActive ? ` transform translate-y-[10px] w-[30px] h-[5px] bg-black dark:bg-[#ebf4f1] rounded m-[5px] transition-all duration-1000` : "w-[30px] h-[5px] bg-black dark:bg-[#ebf4f1] rounded m-[5px] transition-all duration-500"}`}></div>
                 <div style={{transform: menuActive ? `rotate()` : ""}} className={`${menuActive ? "opacity-0 -translate-x-8 w-[30px] h-[5px] bg-black dark:bg-[#ebf4f1] rounded m-[5px] transition-all duration-500" : "w-[30px] h-[5px] bg-black dark:bg-[#ebf4f1] rounded m-[5px] transition-all duration-500"}`}></div>
                 <div style={{transform: menuActive ? `rotate(45deg) translateY(-15px)` : ""}} className={`${menuActive ? `-translate-y-[30px] w-[30px] h-[5px] bg-black dark:bg-[#ebf4f1] rounded m-[5px] transition-all duration-500 `: "w-[30px] h-[5px] bg-black dark:bg-[#ebf4f1] rounded m-[5px] transition-all duration-500"}`} ></div>
                 </div>
-              <div style={{transform: menuActive ? `` : ""}} className={`${menuActive ?  `w-72 h-full fixed right-0 top-0 ${themeColor[theme].back} p-12 box-border transition-all duration-100 md:hidden` : `w-72 h-full fixed  top-0 ${themeColor[theme].back} p-12 box-border transition-all duration-100 md:hidden -right-72 z-[1000]`}`}>
-          <div className={`${menuActive ? '' : "hidden"} xl:block`}>
+                <div style={{transform: menuActive ? `` : ""}} className={`${menuActive ?  `w-72 h-full fixed right-0 top-0 ${themeColor[theme].back} p-12 box-border transition-all duration-100 xl:hidden` : `w-72 h-full fixed  top-0 ${themeColor[theme].back} p-12 box-border transition-all duration-100 xl:hidden -right-72 z-[1000]`}`}>
+                  <div className=''>
+                    <span className='text-3xl font-semibold'>테마</span>
+                    {
+                      buttons.map((e,i)=>{
+                        return(
+                          <>
+                            <button key={i} className= {`mx-1 md:mx-2 xl:mx-3 block py-3 ${themeColor[theme].back}`} onClick={()=>{
+                              setTheme(e.theme);
+                              localStorage.setItem("theme", e.theme);
+                              }}>{e.name}</button>
+                          </>
+                        )
+                      })
+                    }
+                  </div>
+              </div>
+          <div className='hidden xl:block'>
             <span>테마 :</span>
             {
               buttons.map((e,i)=>{
@@ -303,7 +320,7 @@ export default function Home() {
               })
             }
           </div>
-          </div>
+          
     </div>
       <div className="w-4/5 md:w-3/5 xl:w-4/12 mx-auto my-40 flex rounded items-center pt-2 flex-wrap">
         <div className="border-b basis-full py-2 px-2 flex justify-center items-center text-sm">
@@ -332,7 +349,6 @@ export default function Home() {
 
         </select>
         </div>
-        {tinvoice}
         <div className="basis-full py-4 border-b text-center">
           <input type="text" onInput={blindNumber} 
           placeholder="운송장 번호를 입력해주세요." className={`w-full border px-5 py-2 rounded-md ${themeColor[theme].outline}`} />
