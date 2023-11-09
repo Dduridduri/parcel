@@ -221,7 +221,7 @@ export default function Home() {
   return (
 
     <>
-    {
+    {/* {
       isLoading === true ?
         <div className="fixed w-full h-full bg-black/50 top-0 left-0 z-50">
           <div className="absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4">
@@ -280,7 +280,7 @@ export default function Home() {
         </div>
         : ""
 
-    }
+    } */}
 
     <div className={`${themeColor[theme].back} p-5 text-black text-sm md:text-xl xl:text-2xl flex xl:justify-between  justify-center`}>
             <h3 className="font-extrabold md:text-center">국내/외 택배조회 시스템</h3>
