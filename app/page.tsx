@@ -144,7 +144,7 @@ export default function Home() {
     const fetchData = async () =>{
       setIsLoading(isLoading)
       try{
-        const res = await fetch(`http://info.sweettracker.co.kr/api/v1/companylist?t_key=${process.env.NEXT_PUBLIC_API_MAIN_KEY}`);
+        const res = await fetch(`https://info.sweettracker.co.kr/api/v1/companylist?t_key=${process.env.NEXT_PUBLIC_API_MAIN_KEY}`);
         const data = await res.json();
         console.log(data);
         setCarriers(data.Company);
