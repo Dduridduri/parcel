@@ -146,7 +146,7 @@ export default function Home() {
       try{
         const res = await fetch(`https://info.sweettracker.co.kr/api/v1/companylist?t_key=${process.env.NEXT_PUBLIC_API_MAIN_KEY}`);
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         setCarriers(data.Company);
         setAllCarriers(data.Company);
         setIsLoading(false);
@@ -205,7 +205,7 @@ export default function Home() {
         setInfoTracking(data);
         setIsShow(true);
       }
-      console.log(data)
+      // console.log(data)
     } catch (error) {
       console.log(error)
     }
