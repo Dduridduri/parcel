@@ -215,11 +215,12 @@ export default function Home() {
 
   const toggleMenu = () =>{
     setMenuActive(!menuActive)
-
   }
 
   return (
-    <>
+
+    <>    
+
     <div className={`${themeColor[theme].back} p-5 text-black text-sm md:text-xl xl:text-2xl flex xl:justify-between  justify-center`}>
             <h3 className="font-extrabold md:text-center">국내/외 택배조회 시스템</h3>
               <div className="fixed right-5 top-5 transition-all duration-500 z-50 cursor-pointer xl:hidden" onClick={() =>{toggleMenu();}}>
@@ -227,14 +228,14 @@ export default function Home() {
                 <div style={{transform: menuActive ? `rotate()` : ""}} className={`${menuActive ? "opacity-0 -translate-x-8 w-[30px] h-[5px] bg-black dark:bg-[#ebf4f1] rounded m-[5px] transition-all duration-500" : "w-[30px] h-[5px] bg-black dark:bg-[#ebf4f1] rounded m-[5px] transition-all duration-500"}`}></div>
                 <div style={{transform: menuActive ? `rotate(45deg) translateY(-15px)` : ""}} className={`${menuActive ? `-translate-y-[30px] w-[30px] h-[5px] bg-black dark:bg-[#ebf4f1] rounded m-[5px] transition-all duration-500 `: "w-[30px] h-[5px] bg-black dark:bg-[#ebf4f1] rounded m-[5px] transition-all duration-500"}`} ></div>
                 </div>
-                <div style={{transform: menuActive ? `` : ""}} className={`${menuActive ?  `w-72 h-full fixed right-0 top-0 ${themeColor[theme]?.back} p-12 box-border transition-all duration-100 xl:hidden` : `w-72 h-full fixed  top-0 ${themeColor[theme]?.back} p-12 box-border transition-all duration-100 xl:hidden -right-72 z-[1000]`}`}>
+                <div style={{transform: menuActive ? `` : ""}} className={`${menuActive ?  `w-72 h-full fixed right-0 top-0 ${themeColor[theme].back} p-12 box-border transition-all duration-100 xl:hidden` : `w-72 h-full fixed  top-0 ${themeColor[theme].back} p-12 box-border transition-all duration-100 xl:hidden -right-72 z-[1000]`}`}>
                   <div className=''>
                     <span className='text-3xl font-semibold'>테마</span>
                     {
                       buttons.map((e,i)=>{
                         return(
                           <>
-                            <button key={i} className= {`mx-1 md:mx-2 xl:mx-3 block py-3 ${themeColor[theme]?.back}`} onClick={()=>{
+                            <button key={i} className= {`mx-1 md:mx-2 xl:mx-3 block py-3 ${themeColor[theme].back}`} onClick={()=>{
                               setTheme(e.theme);
                               localStorage.setItem("theme", e.theme);
                               }}>{e.name}</button>
@@ -250,7 +251,7 @@ export default function Home() {
               buttons.map((e,i)=>{
                 return(
                   <>
-                    <button key={i} className= {`mx-1 md:mx-2 xl:mx-3 ${themeColor[theme]?.back}`} onClick={()=>{
+                    <button key={i} className= {`mx-1 md:mx-2 xl:mx-3 ${themeColor[theme].back}`} onClick={()=>{
                       setTheme(e.theme);
                       localStorage.setItem("theme", e.theme);
                       }}>{e.name}</button>
@@ -264,8 +265,8 @@ export default function Home() {
       <div className="w-4/5 md:w-3/5 xl:w-4/12 mx-auto my-40 flex rounded items-center pt-2 flex-wrap">
         <div className="border-b basis-full py-2 px-2 flex justify-center items-center text-sm">
           <span className="basis-[30%] text-center mr-5">국내 / 국외 선택</span>
-          <button className={`text-sm border p-1 px-5 rounded hover:text-white mr-4 ${isBtn === 1? 'text-white' : 'text-black'} ${themeColor[theme]?.hover} ${isBtn === 1 ? themeColor[theme]?.active : ''}`  }  onClick={()=>{selectCode(1, '04', 'CJ대한통운')}}>국내</button>
-          <button className={`text-sm border p-1 px-5 rounded hover:text-white ${isBtn === 2? 'text-white' : 'text-black'} ${themeColor[theme]?.hover} ${isBtn === 2 ? themeColor[theme]?.active : ''}`} onClick={()=>{selectCode(2, '12' , 'EMS')}}>국외</button>
+          <button className={`text-sm border p-1 px-5 rounded hover:text-white mr-4 ${isBtn === 1? 'text-white' : 'text-black'} ${themeColor[theme].hover} ${isBtn === 1 ? themeColor[theme].active : ''}`  }  onClick={()=>{selectCode(1, '04', 'CJ대한통운')}}>국내</button>
+          <button className={`text-sm border p-1 px-5 rounded hover:text-white ${isBtn === 2? 'text-white' : 'text-black'} ${themeColor[theme].hover} ${isBtn === 2 ? themeColor[theme].active : ''}`} onClick={()=>{selectCode(2, '12' , 'EMS')}}>국외</button>
         </div>
         <div className="basis-full py-4 border-b">        
         <select className="w-full border p-2 rounded-md" value={tcode} onChange={(e)=>{
@@ -290,15 +291,15 @@ export default function Home() {
         </div>
         <div className="basis-full py-4 border-b text-center">
           <input type="text" onInput={blindNumber} 
-          placeholder="운송장 번호를 입력해주세요." className={`w-full border px-5 py-2 rounded-md ${themeColor[theme]?.outline}`} />
+          placeholder="운송장 번호를 입력해주세요." className={`w-full border px-5 py-2 rounded-md ${themeColor[theme].outline}`} />
         </div>
         <div className="basis-full border-b py-4 text-center">
-          <button className={`${themeColor[theme]?.back} text-white px-5 py-2 rounded-md w-full`} onClick={PostSubmit}>조회하기</button>
+          <button className={`${themeColor[theme].back} text-white px-5 py-2 rounded-md w-full`} onClick={PostSubmit}>조회하기</button>
         </div>
         {
           error &&
           <div className="basis-full text-center py-4 border-b">
-          <span className={`${themeColor[theme]?.text}`}>{error}</span>
+          <span className={`${themeColor[theme].text}`}>{error}</span>
         </div>
         }
       </div>
@@ -306,7 +307,7 @@ export default function Home() {
         isShow && 
         <>
         <div className="w-full">
-          <div className={`${themeColor[theme]?.back} text-white flex justify-center py-10 px-5 flex-wrap items-center text-center`}>
+          <div className={`${themeColor[theme].back} text-white flex justify-center py-10 px-5 flex-wrap items-center text-center`}>
             <span className="text-xl basis-[45%] font-bold mr-5 mb-5">운송장 번호</span>
             <h3 className="text-2xl basis-[45%] font-bold mb-5">{tinvoice}</h3>
             <span className="text-xl basis-[45%] font-bold mr-5 mb-5">택배사</span>
@@ -318,9 +319,9 @@ export default function Home() {
             Array(5).fill('').map((_,i)=>{
               const resultLevel = infoTracking && i + 1 === (infoTracking?.level - 1);
               return(
-                <div key={i} className={`${infoTracking && resultLevel ? themeColor[theme]?.after: 'after:bg-gray-200'} relative z-10 after:absolute after:w-[60px] after:h-[60px] after:rounded-full after:left-0 after:top-0`}>
+                <div key={i} className={`${infoTracking && resultLevel ? themeColor[theme].after: 'after:bg-gray-200'} relative z-10 after:absolute after:w-[60px] after:h-[60px] after:rounded-full after:left-0 after:top-0`}>
                   <img className="relative z-10" src={`images/ic_sky_delivery_step${i+1}_on.png`} alt={PostListName[i]} />
-                  <p className={`text-center text-xs mt-1 ${infoTracking && resultLevel ? `${themeColor[theme]?.text} font-bold` : ""}`}>{PostListName[i]}</p>
+                  <p className={`text-center text-xs mt-1 ${infoTracking && resultLevel ? `${themeColor[theme].text} font-bold` : ""}`}>{PostListName[i]}</p>
                   {/* 레벨의 글자 > 테마의 색상 +글자진하게 */}
                 </div>
               )
@@ -331,12 +332,12 @@ export default function Home() {
           {
             infoTracking && infoTracking.trackingDetails.slice().reverse().map((e,i)=>{
               return(
-                <div key={i} className={`pl-20 py-5 relative group ${themeColor[theme]?.odd}`}>
-                  <div className={`${i === 0 ? `${themeColor[theme]?.back} ${themeColor[theme]?.border}` : 'bg-white'} relative border-2 rounded-full w-2 h-2 -left-[30px] top-10 z-30`}></div>
+                <div key={i} className={`pl-20 py-5 relative group ${themeColor[theme].odd}`}>
+                  <div className={`${i === 0 ? `${themeColor[theme].back} ${themeColor[theme].border}` : 'bg-white'} relative border-2 rounded-full w-2 h-2 -left-[30px] top-10 z-30`}></div>
                   <p>{e.where} | {e.kind}</p>
                   <p>{e.telno}</p>
                   <p>{e.timeString}</p>
-                  <div className={`group-last:h-0 h-full absolute w-0.5 left-[53px] top-[60px] z-20 ${themeColor[theme]?.back}`}></div>
+                  <div className={`group-last:h-0 h-full absolute w-0.5 left-[53px] top-[60px] z-20 ${themeColor[theme].back}`}></div>
                 </div>
               )
             })
